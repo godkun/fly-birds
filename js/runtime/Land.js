@@ -17,6 +17,7 @@ export class Land extends Sprite {
     this.landSpeed = Director.getInstance().moveSpeed;
   }
 
+  // 重写
   draw() {
     this.landX = this.landX + this.landSpeed;
     if (this.landX > (this.img.width - DataStore.getInstance().canvas.width)) {

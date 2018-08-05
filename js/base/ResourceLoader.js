@@ -1,36 +1,30 @@
-import {Resources} from "./Resources.js"
+//资源文件加载器，确保canvas在图片资源加载完成后才进行渲染
+import {Resources} from "./Resources.js";
 
 export class ResourceLoader {
-  /**
-   * @author yangkun
-   * @date 2018/8/5
-   * @Descripton: 构造函数，将键值对数组转换成map形式，并重写map格式中的value
-   * @param
-   */
   constructor() {
     this.map = new Map(Resources);
     for (let [key, value] of this.map) {
-      console.log(key)
-      // wx.createImage()
-      const image = new Image()
-      image.src = value
-      this.map.set(key, value)
+      const image = new Image();
+      // const image = wx.createImage();
+      image.src = value;
+      this.map.set(key, image);
     }
   }
-  
-  onLoaded() {
-    let loaderCount = 0;
-    for(let value of this.map.values()) {
-        value.onload = () => {
-          loaderCount ++;
-          if (loaderCount >= this.map.size) {
-            callback(this.map)
-          }
+
+  onLoaded(callback) {
+    let loadedCount = 0;
+    for (let value of this.map.values()) {
+      value.onload = () => {
+        loadedCount++;
+        if (loadedCount >= this.map.size) {
+          callback(this.map);
         }
+      }
     }
   }
-  
+
   static create() {
-    return new ResourceLoader()
+    return new ResourceLoader();
   }
 }
