@@ -1,7 +1,12 @@
-import {ResourceLoader} from "./js/base/ResourceLoader.js";
+// 游戏开始的入口
+import {ResourceLoader} from './js/base/ResourceLoader.js';
+import {BackGround} from "./js/runtime/BackGround.js";
 import {DataStore} from "./js/base/DataStore.js";
 import {Director} from "./js/Director.js";
-import {Background} from "./js/runtime/Background.js";
+import {Land} from "./js/runtime/Land.js";
+import {Birds} from "./js/player/Birds.js";
+import {StartButton} from "./js/player/StartButton.js";
+import {Score} from "./js/player/Score.js";
 
 export class Main {
   constructor() {
@@ -26,9 +31,14 @@ export class Main {
   init() {
     this.director.isGameOver = false
     this.dataStore
+      .put('pencils', [])
       .put('background', Background)
-      .put()
+      .put('land', Land)
+      .put('birds', Birds)
+      .put('score', Score)
+      .put('startButton', StartButton);
     this.director.run()
   }
+  
 
 }

@@ -26,7 +26,7 @@ export class Sprite {
   }
 
   static getImage(key) {
-    return DataStore.getInstace().resolve.get(key)
+    return DataStore.getInstace().res.get(key)
   }
 
   /**

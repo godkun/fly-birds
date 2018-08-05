@@ -12,6 +12,13 @@ export class Director {
     this.dataStore = DataStore.getInstace()
   }
   // 开始执行动画
+  run() {
+    if (!this.isGameOver) {
+      this.dataStore.get('background').draw()
+    } else {
+      console.log('游戏结束');
+    }
+  }
 
 
 }
