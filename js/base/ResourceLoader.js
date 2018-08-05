@@ -1,4 +1,4 @@
-import {Resources} from "./Resources.js";
+import {Resources} from "./Resources.js"
 
 export class ResourceLoad {
   /**
@@ -10,10 +10,14 @@ export class ResourceLoad {
   constructor() {
    this.map = new Map(Resources);
    for(let [key, value] of this.map) {
+     console.log(key)
      // wx.createImage()
-     const image = new Image();
-     image.src = value;
+     const image = new Image()
+     image.src = value
      this.map.set(key, value)
    }
   }
+   static create() {
+     return new ResourceLoad()
+    }
 }
