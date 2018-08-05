@@ -20,5 +20,11 @@ export class Director {
     }
   }
 
-
+  birdsEvent() {
+    for(let i = 0; i <= 2; i++) {
+        this.dataStore.get('birds').y[i] =
+          this.dataStore.get('birds').birdsY[i]
+    }
+    this.dataStore.get('birds').time = 0
+  }
 }

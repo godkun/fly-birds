@@ -37,8 +37,20 @@ export class Main {
       .put('birds', Birds)
       .put('score', Score)
       .put('startButton', StartButton);
+    this.registerEvent()
+    this.director.createPencil()
     this.director.run()
   }
-  
 
+  registerEvent() {
+    this.canvas.addEventListener('touchstart', event => {
+      event.preventDefault()
+      if (!this.director.isGameOver) {
+        console.log('游戏开始')
+        this.init()
+      } else {
+        this.director.birdsEvent()
+      }
+    })
+  }
 }
