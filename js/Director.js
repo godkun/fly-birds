@@ -1,11 +1,11 @@
 //导演类，控制游戏的逻辑
-
+// 每次启动游戏，游戏都是一个单例对象，进行各种逻辑处理
 import {DataStore} from "./base/DataStore.js";
 import {UpPencil} from "./runtime/UpPencil.js";
 import {DownPencil} from "./runtime/DownPencil.js";
 
 export class Director {
-
+  // 单例
   static getInstance() {
     if (!Director.instance) {
       Director.instance = new Director();
@@ -13,11 +13,13 @@ export class Director {
     return Director.instance;
   }
 
+  // 拿到单例
   constructor() {
     this.dataStore = DataStore.getInstance();
     this.moveSpeed = 2;
   }
 
+  // 创造铅笔
   createPencil() {
     const minTop = DataStore.getInstance().canvas.height / 8;
     const maxTop = DataStore.getInstance().canvas.height / 2;
@@ -26,6 +28,7 @@ export class Director {
     this.dataStore.get('pencils').push(new DownPencil(top));
   }
 
+  // 小鸟事件
   birdsEvent() {
     for (let i = 0; i <= 2; i++) {
       this.dataStore.get('birds').y[i] =
@@ -89,11 +92,6 @@ export class Director {
     //加分逻辑
     if (birds.birdsX[0] > pencils[0].x + pencils[0].width
       && score.isScore) {
-      // wx.vibrateShort({
-      //     success: function () {
-      //         console.log('振动成功');
-      //     }
-      // });
       score.isScore = false;
       score.scoreNumber++;
     }
