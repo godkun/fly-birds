@@ -1,11 +1,14 @@
 import {ResourceLoader} from "./js/base/ResourceLoader.js";
-import {DataStore} from "./js/base/DataStore";
+import {DataStore} from "./js/base/DataStore.js";
+import {Director} from "./js/Director.js";
+import {Background} from "./js/runtime/Background.js";
 
 export class Main {
   constructor() {
     this.canvas = document.getElementById('canvas')
     this.ctx = this.canvas.getContext('2d')
     this.dataStore = DataStore.getInstace()
+    this.director = Director.getInstance()
     const loader = ResourceLoader().create()
     loader.onLoaded(map => this.onResourceFirstLoaded(map))
   }
@@ -21,7 +24,11 @@ export class Main {
   }
 
   init() {
-
+    this.director.isGameOver = false
+    this.dataStore
+      .put('background', Background)
+      .put()
+    this.director.run()
   }
 
 }
