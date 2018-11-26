@@ -11,5 +11,10 @@ git clone git@github.com:godkun/fly-birds.git
 
 # 预览效果
 
-1. 在微信开发者工具上预览
+在微信开发者工具上预览
+
+![image](https://github.com/godkun/fly-birds/blob/master/docs/readme.gif)
+
+
+在手机上截图
 
