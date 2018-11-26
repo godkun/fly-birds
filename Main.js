@@ -2,7 +2,7 @@
  * @author yangkun
  * @date 2018/8/6
  * @Descripton: 初始化整个游戏的精灵，作为游戏开始的入口
-*/
+ */
 import {ResourceLoader} from "./js/base/ResourceLoader.js";
 import {StartButton} from "./js/player/StartButton.js";
 import {BackGround} from "./js/runtime/BackGround.js";
@@ -15,7 +15,8 @@ import {Director} from "./js/Director.js";
 export class Main {
   constructor() {
     // 初始化canvas
-    this.canvas = document.getElementById('canvas')
+    // this.canvas = document.getElementById('canvas')
+    this.canvas = wx.createCanvas()
     // 取到canvas 2d 上下文
     this.ctx = this.canvas.getContext('2d');
     // 单例
@@ -59,9 +60,7 @@ export class Main {
 
 
   registerEvent() {
-    this.canvas.addEventListener('touchstart', e => {
-      //屏蔽掉JS的事件冒泡
-      e.preventDefault();
+    wx.onTouchStart(() => {
       if (this.director.isGameOver) {
         console.log('游戏开始');
         this.init();
@@ -70,4 +69,5 @@ export class Main {
       }
     });
   }
+
 }

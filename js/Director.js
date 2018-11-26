@@ -131,7 +131,7 @@ export class Director {
       cancelAnimationFrame(this.dataStore.get('timer'));
       this.dataStore.destroy();
       //触发微信小游戏垃圾回收
-      // wx.triggerGC();
+      wx.triggerGC();
     }
   }
 }
